@@ -9,15 +9,22 @@
   <body>
     <main class="popup">
       <header class="hero">
-        <div class="brand-mark" aria-hidden="true">
-          <span class="brand-face"></span>
-          <span class="brand-spark"></span>
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">
+            <svg class="brand-glyph" viewBox="0 0 128 128" focusable="false">
+              <circle class="glyph-fill" cx="64" cy="64" r="45"/>
+              <circle class="glyph-cut" cx="48" cy="55" r="6"/>
+              <circle class="glyph-cut" cx="80" cy="55" r="6"/>
+              <path class="glyph-smile" d="M42 74c9 15 35 15 44 0"/>
+            </svg>
+          </div>
+          <span class="brand-divider" aria-hidden="true"></span>
+          <div class="brand-copy">
+            <div class="eyebrow">PartyCue</div>
+            <h1>Now<br>Playing</h1>
+          </div>
         </div>
-        <div>
-          <div class="eyebrow">PartyCue</div>
-          <h1>Now Playing</h1>
-          <p id="page-status">正在连接当前标签页...</p>
-        </div>
+        <p id="page-status">正在连接当前标签页...</p>
       </header>
 
       <section class="result" id="result">

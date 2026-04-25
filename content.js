@@ -122,43 +122,52 @@
         :host { all: initial; }
         .card {
           position: relative;
-          width: 320px;
+          width: 326px;
           box-sizing: border-box;
-          color: #312333;
+          color: #ffffff;
           background:
-            radial-gradient(circle at 12% -6%, rgba(255, 83, 166, 0.42), transparent 36%),
-            radial-gradient(circle at 92% 0%, rgba(151, 225, 255, 0.50), transparent 35%),
-            linear-gradient(150deg, rgba(255, 247, 252, 0.94), rgba(255, 217, 236, 0.90) 52%, rgba(222, 246, 255, 0.90));
-          border: 1px solid rgba(255, 125, 188, 0.38);
+            linear-gradient(126deg, rgba(122, 176, 255, 0.46) 0 15%, transparent 30%),
+            radial-gradient(ellipse at 82% -8%, rgba(213, 52, 255, 0.62), transparent 43%),
+            radial-gradient(ellipse at 8% 92%, rgba(143, 57, 214, 0.76), transparent 48%),
+            linear-gradient(145deg, rgba(18, 0, 31, 0.96), rgba(33, 0, 56, 0.94) 46%, rgba(8, 0, 18, 0.96));
+          border: 1px solid rgba(255, 255, 255, 0.16);
           border-radius: 8px;
-          box-shadow: 0 18px 48px rgba(44, 20, 36, 0.26), 0 0 30px rgba(255, 96, 178, 0.20);
+          box-shadow: 0 22px 52px rgba(4, 0, 14, 0.44), 0 0 34px rgba(158, 59, 238, 0.24);
           font: 13px/1.42 Arial, Helvetica, sans-serif;
           overflow: hidden;
-          backdrop-filter: blur(14px) saturate(1.22);
+          backdrop-filter: blur(16px) saturate(1.25);
         }
-        .card::before {
+        .card::before,
+        .card::after {
           content: "";
           position: absolute;
           inset: 0;
           pointer-events: none;
+        }
+        .card::before {
           background:
-            linear-gradient(102deg, transparent 0 34%, rgba(255, 255, 255, 0.42) 38%, transparent 42% 67%, rgba(151, 225, 255, 0.26) 70%, transparent 75%),
-            radial-gradient(circle, rgba(255, 76, 157, 0.76) 0 1px, transparent 1.8px),
-            radial-gradient(circle, rgba(90, 202, 255, 0.72) 0 1px, transparent 1.8px),
-            radial-gradient(circle, rgba(255, 213, 92, 0.68) 0 1px, transparent 1.8px);
-          background-position: 0 0, 10px 13px, 33px 5px, 3px 32px;
-          background-size: auto, 48px 48px, 61px 61px, 73px 73px;
-          opacity: 0.36;
+            radial-gradient(ellipse 86% 76% at -16% 40%, transparent 0 43%, rgba(145, 60, 221, 0.72) 44% 54%, transparent 55%),
+            radial-gradient(ellipse 92% 82% at 108% 22%, transparent 0 43%, rgba(84, 25, 158, 0.78) 44% 56%, transparent 57%),
+            linear-gradient(132deg, transparent 0 28%, rgba(155, 69, 230, 0.56) 29% 36%, transparent 37% 72%, rgba(5, 0, 14, 0.66) 73% 88%, transparent 89%);
+          opacity: 0.92;
+        }
+        .card::after {
+          background:
+            linear-gradient(90deg, rgba(255, 255, 255, 0.10), transparent 22% 78%, rgba(255, 255, 255, 0.07)),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 36%);
+          mix-blend-mode: screen;
+          opacity: 0.7;
         }
         .head {
           position: relative;
+          z-index: 1;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 8px;
-          padding: 10px 12px;
-          border-bottom: 1px solid rgba(255, 113, 178, 0.20);
-          background: rgba(255, 255, 255, 0.46);
+          padding: 12px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+          background: rgba(0, 0, 0, 0.12);
         }
         .title-wrap {
           display: flex;
@@ -169,83 +178,104 @@
         .mini-mark {
           position: relative;
           flex: 0 0 auto;
-          width: 30px;
-          height: 30px;
+          width: 38px;
+          height: 38px;
           border-radius: 8px;
-          background: linear-gradient(135deg, #ff57a8, #ff8fc9 52%, #9fe7ff);
-          box-shadow: 0 0 18px rgba(255, 96, 178, 0.30);
+          background:
+            radial-gradient(ellipse at 82% 14%, rgba(176, 95, 255, 0.52), transparent 42%),
+            radial-gradient(ellipse at 18% 82%, rgba(24, 0, 44, 0.84), transparent 56%),
+            linear-gradient(145deg, #2b0044 0%, #0c001d 54%, #4c0788 100%);
+          box-shadow: 0 0 20px rgba(168, 66, 248, 0.30);
           overflow: hidden;
         }
-        .mini-mark span {
-          position: absolute;
-          left: 8px;
-          top: 7px;
-          width: 14px;
-          height: 14px;
-          border-radius: 50%;
-          background: #fff5b4;
-          box-shadow: 0 0 10px rgba(255, 245, 180, 0.76);
-        }
-        .mini-mark span::before {
+        .mini-mark::before {
           content: "";
           position: absolute;
-          top: 5px;
-          left: 4px;
+          inset: 0;
+          background:
+            radial-gradient(ellipse 88% 74% at -12% 72%, transparent 0 47%, rgba(156, 78, 226, 0.80) 48% 58%, transparent 59%),
+            linear-gradient(42deg, transparent 0 58%, rgba(139, 47, 221, 0.72) 59% 68%, transparent 69%);
+        }
+        .mini-glyph {
+          position: absolute;
+          inset: 6px;
+          width: 26px;
+          height: 26px;
+          filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.24));
+        }
+        .glyph-line {
+          fill: none;
+          stroke: #ffffff;
+          stroke-width: 6;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .glyph-fill {
+          fill: #ffffff;
+        }
+        .glyph-cut {
+          fill: #170027;
+        }
+        .glyph-smile {
+          fill: none;
+          stroke: #170027;
+          stroke-width: 8;
+          stroke-linecap: round;
+        }
+        .mini-divider {
+          flex: 0 0 auto;
           width: 2px;
-          height: 2px;
-          border-radius: 50%;
-          background: #151b25;
-          box-shadow: 5px 0 #151b25;
-        }
-        .mini-mark span::after {
-          content: "";
-          position: absolute;
-          left: 4px;
-          bottom: 3px;
-          width: 6px;
-          height: 4px;
-          border-bottom: 1.5px solid #151b25;
-          border-radius: 0 0 999px 999px;
+          height: 40px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.88);
+          box-shadow: 0 0 12px rgba(255, 255, 255, 0.16);
         }
         .eyebrow {
-          color: #1887b8;
+          color: rgba(255, 255, 255, 0.74);
           font-size: 9px;
-          font-weight: 800;
+          font-weight: 900;
           letter-spacing: 0;
           text-transform: uppercase;
         }
         .title {
           min-width: 0;
-          color: #f73596;
-          font-weight: 700;
-          font-size: 14px;
+          color: #ffffff;
+          font-family: Impact, "Arial Black", Arial, Helvetica, sans-serif;
+          font-size: 19px;
+          font-weight: 900;
+          line-height: 0.95;
           letter-spacing: 0;
+          text-transform: uppercase;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          text-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
         }
         .close {
+          position: relative;
+          z-index: 1;
           appearance: none;
-          border: 0;
-          color: #704c6d;
-          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          color: rgba(255, 255, 255, 0.78);
+          background: rgba(255, 255, 255, 0.06);
           cursor: pointer;
           font-size: 18px;
           line-height: 1;
-          width: 26px;
-          height: 26px;
+          width: 28px;
+          height: 28px;
           border-radius: 6px;
         }
-        .close:hover { background: rgba(255, 91, 166, 0.14); color: #f73596; }
+        .close:hover { background: rgba(255, 255, 255, 0.14); color: #ffffff; }
         .body {
           position: relative;
+          z-index: 1;
           padding: 12px;
         }
         .status {
           display: flex;
           align-items: center;
           gap: 8px;
-          color: #6f5570;
+          color: rgba(255, 255, 255, 0.70);
           min-height: 20px;
           margin-bottom: 10px;
         }
@@ -254,18 +284,18 @@
           width: 8px;
           height: 8px;
           border-radius: 999px;
-          background: #c69ab9;
+          background: rgba(255, 255, 255, 0.32);
         }
-        .dot.active { background: #84dfff; box-shadow: 0 0 0 4px rgba(132, 223, 255, 0.25), 0 0 14px rgba(132, 223, 255, 0.74); }
-        .dot.busy { background: #ff5bac; box-shadow: 0 0 0 4px rgba(255, 91, 172, 0.20), 0 0 14px rgba(255, 91, 172, 0.62); }
+        .dot.active { background: #90c7ff; box-shadow: 0 0 0 4px rgba(83, 150, 255, 0.22), 0 0 16px rgba(126, 185, 255, 0.74); }
+        .dot.busy { background: #d78bff; box-shadow: 0 0 0 4px rgba(189, 97, 255, 0.20), 0 0 16px rgba(207, 113, 255, 0.64); }
         .track {
           position: relative;
           padding: 10px;
           border-radius: 8px;
           background:
-            linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 247, 252, 0.50)),
-            rgba(255, 255, 255, 0.56);
-          border: 1px solid rgba(255, 113, 178, 0.22);
+            linear-gradient(126deg, rgba(174, 82, 255, 0.20), transparent 32% 70%, rgba(75, 154, 255, 0.15)),
+            rgba(8, 0, 18, 0.42);
+          border: 1px solid rgba(255, 255, 255, 0.12);
           margin-bottom: 10px;
           overflow: hidden;
         }
@@ -275,44 +305,49 @@
           left: 10px;
           right: 10px;
           bottom: 0;
-          height: 2px;
+          height: 3px;
           border-radius: 999px;
-          background: linear-gradient(90deg, #ff4fa0, #ff9ccd, #93ddff);
-          box-shadow: 0 0 14px rgba(255, 83, 166, 0.42);
+          background: linear-gradient(90deg, #ffffff, #d68aff, #5aa7ff);
+          box-shadow: 0 0 16px rgba(199, 104, 255, 0.52);
         }
         .artist {
           position: relative;
-          color: #e72888;
-          font-size: 16px;
-          font-weight: 700;
+          color: #ffffff;
+          font-family: Impact, "Arial Black", Arial, Helvetica, sans-serif;
+          font-size: 19px;
+          font-weight: 900;
+          line-height: 1;
+          letter-spacing: 0;
+          text-transform: uppercase;
           overflow-wrap: anywhere;
-          text-shadow: 0 0 12px rgba(255, 100, 180, 0.18);
+          text-shadow: 0 0 16px rgba(255, 255, 255, 0.16);
         }
         .song {
           position: relative;
-          color: #4d3d53;
-          margin-top: 2px;
+          color: rgba(255, 255, 255, 0.74);
+          margin-top: 5px;
           overflow-wrap: anywhere;
         }
         .link {
           position: relative;
           display: block;
-          color: #148fbd;
+          color: #91c5ff;
+          font-weight: 700;
           text-decoration: none;
           overflow-wrap: anywhere;
           margin-top: 8px;
         }
         .link:hover { text-decoration: underline; }
         .raw {
-          color: #4d3d53;
+          color: rgba(255, 255, 255, 0.68);
           max-height: 74px;
           overflow: auto;
           white-space: pre-wrap;
           overflow-wrap: anywhere;
           padding: 8px;
           border-radius: 6px;
-          background: rgba(255, 255, 255, 0.52);
-          border: 1px solid rgba(255, 113, 178, 0.16);
+          background: rgba(6, 0, 15, 0.36);
+          border: 1px solid rgba(255, 255, 255, 0.10);
           margin-bottom: 10px;
         }
         .actions { display: flex; gap: 8px; }
@@ -322,14 +357,18 @@
           align-items: center;
           justify-content: center;
           gap: 7px;
+          min-height: 36px;
           appearance: none;
-          border: 1px solid rgba(255, 255, 255, 0.68);
+          border: 1px solid rgba(255, 255, 255, 0.18);
           border-radius: 6px;
           color: #ffffff;
-          background: linear-gradient(135deg, #ff4fa0, #ff77bb 52%, #ffb6dc);
+          background:
+            linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 38%),
+            linear-gradient(135deg, #6d21cc, #af3dff 48%, #3b83ff);
           cursor: pointer;
-          font: 700 12px/1 Arial, Helvetica, sans-serif;
+          font: 800 12px/1 Arial, Helvetica, sans-serif;
           padding: 9px 10px;
+          box-shadow: 0 12px 24px rgba(7, 0, 18, 0.26);
         }
         button.action::before {
           content: "";
@@ -349,17 +388,18 @@
           mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M7 7h10v10H7z'/%3E%3C/svg%3E");
         }
         button.secondary {
-          color: #24455a;
+          color: #ffffff;
           background:
-            linear-gradient(135deg, rgba(151, 225, 255, 0.78), rgba(255, 255, 255, 0.58)),
-            rgba(255, 255, 255, 0.62);
+            linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 42%),
+            linear-gradient(135deg, rgba(20, 8, 43, 0.92), rgba(58, 21, 93, 0.86));
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
         }
         button.action:disabled {
           cursor: not-allowed;
           opacity: 0.55;
         }
         .small {
-          color: #755a73;
+          color: rgba(255, 255, 255, 0.56);
           font-size: 11px;
           margin-top: 10px;
         }
@@ -367,7 +407,15 @@
       <div class="card">
         <div class="head">
           <div class="title-wrap">
-            <span class="mini-mark" aria-hidden="true"><span></span></span>
+            <span class="mini-mark" aria-hidden="true">
+              <svg class="mini-glyph" viewBox="0 0 128 128" focusable="false">
+                <circle class="glyph-fill" cx="64" cy="64" r="45"/>
+                <circle class="glyph-cut" cx="48" cy="55" r="6"/>
+                <circle class="glyph-cut" cx="80" cy="55" r="6"/>
+                <path class="glyph-smile" d="M42 74c9 15 35 15 44 0"/>
+              </svg>
+            </span>
+            <span class="mini-divider" aria-hidden="true"></span>
             <div>
               <div class="eyebrow">PartyCue</div>
               <div class="title">Now Playing</div>
