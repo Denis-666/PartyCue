@@ -1,17 +1,19 @@
 {
-  "name": "youtube-now-playing-extension",
+  "name": "partycue-now-playing",
   "version": "1.0.0",
-  "description": "Local Chrome extension for OCR-based One World Radio now-playing detection.",
-  "private": true,
+  "description": "A cheerful Chrome extension that OCRs the now-playing label on a target YouTube radio stream and opens NetEase Cloud Music.",
   "scripts": {
     "check": "node --check background.js && node --check popup.js && node --check content.js && node --check offscreen.js"
   },
   "keywords": [
     "chrome-extension",
+    "netease-cloud-music",
+    "now-playing",
     "ocr",
+    "party",
     "youtube"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "@tesseract.js-data/eng": "^1.0.0",

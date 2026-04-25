@@ -19,7 +19,7 @@
     query: "",
     rawText: "",
     searchUrl: "",
-    status: "待命",
+    status: "准备开场",
     track: null,
     warning: ""
   };
@@ -88,7 +88,7 @@
     state.enabled = isTargetPage();
     if (!state.enabled) {
       stopListening();
-      setStatus("这个插件只针对指定的 One World Radio 视频");
+      setStatus("PartyCue 目前只针对指定的 One World Radio 视频");
     }
     updatePanel();
   });
@@ -121,30 +121,104 @@
       <style>
         :host { all: initial; }
         .card {
+          position: relative;
           width: 320px;
           box-sizing: border-box;
-          color: #f4f7fb;
-          background: rgba(14, 16, 22, 0.92);
-          border: 1px solid rgba(255, 255, 255, 0.14);
+          color: #312333;
+          background:
+            radial-gradient(circle at 12% -6%, rgba(255, 83, 166, 0.42), transparent 36%),
+            radial-gradient(circle at 92% 0%, rgba(151, 225, 255, 0.50), transparent 35%),
+            linear-gradient(150deg, rgba(255, 247, 252, 0.94), rgba(255, 217, 236, 0.90) 52%, rgba(222, 246, 255, 0.90));
+          border: 1px solid rgba(255, 125, 188, 0.38);
           border-radius: 8px;
-          box-shadow: 0 16px 44px rgba(0, 0, 0, 0.38);
+          box-shadow: 0 18px 48px rgba(44, 20, 36, 0.26), 0 0 30px rgba(255, 96, 178, 0.20);
           font: 13px/1.42 Arial, Helvetica, sans-serif;
           overflow: hidden;
-          backdrop-filter: blur(10px);
+          backdrop-filter: blur(14px) saturate(1.22);
+        }
+        .card::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background:
+            linear-gradient(102deg, transparent 0 34%, rgba(255, 255, 255, 0.42) 38%, transparent 42% 67%, rgba(151, 225, 255, 0.26) 70%, transparent 75%),
+            radial-gradient(circle, rgba(255, 76, 157, 0.76) 0 1px, transparent 1.8px),
+            radial-gradient(circle, rgba(90, 202, 255, 0.72) 0 1px, transparent 1.8px),
+            radial-gradient(circle, rgba(255, 213, 92, 0.68) 0 1px, transparent 1.8px);
+          background-position: 0 0, 10px 13px, 33px 5px, 3px 32px;
+          background-size: auto, 48px 48px, 61px 61px, 73px 73px;
+          opacity: 0.36;
         }
         .head {
+          position: relative;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 8px;
           padding: 10px 12px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-          background: rgba(255, 255, 255, 0.04);
+          border-bottom: 1px solid rgba(255, 113, 178, 0.20);
+          background: rgba(255, 255, 255, 0.46);
+        }
+        .title-wrap {
+          display: flex;
+          align-items: center;
+          min-width: 0;
+          gap: 9px;
+        }
+        .mini-mark {
+          position: relative;
+          flex: 0 0 auto;
+          width: 30px;
+          height: 30px;
+          border-radius: 8px;
+          background: linear-gradient(135deg, #ff57a8, #ff8fc9 52%, #9fe7ff);
+          box-shadow: 0 0 18px rgba(255, 96, 178, 0.30);
+          overflow: hidden;
+        }
+        .mini-mark span {
+          position: absolute;
+          left: 8px;
+          top: 7px;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #fff5b4;
+          box-shadow: 0 0 10px rgba(255, 245, 180, 0.76);
+        }
+        .mini-mark span::before {
+          content: "";
+          position: absolute;
+          top: 5px;
+          left: 4px;
+          width: 2px;
+          height: 2px;
+          border-radius: 50%;
+          background: #151b25;
+          box-shadow: 5px 0 #151b25;
+        }
+        .mini-mark span::after {
+          content: "";
+          position: absolute;
+          left: 4px;
+          bottom: 3px;
+          width: 6px;
+          height: 4px;
+          border-bottom: 1.5px solid #151b25;
+          border-radius: 0 0 999px 999px;
+        }
+        .eyebrow {
+          color: #1887b8;
+          font-size: 9px;
+          font-weight: 800;
+          letter-spacing: 0;
+          text-transform: uppercase;
         }
         .title {
           min-width: 0;
+          color: #f73596;
           font-weight: 700;
-          font-size: 13px;
+          font-size: 14px;
           letter-spacing: 0;
           white-space: nowrap;
           overflow: hidden;
@@ -153,7 +227,7 @@
         .close {
           appearance: none;
           border: 0;
-          color: #b9c3d6;
+          color: #704c6d;
           background: transparent;
           cursor: pointer;
           font-size: 18px;
@@ -162,13 +236,16 @@
           height: 26px;
           border-radius: 6px;
         }
-        .close:hover { background: rgba(255, 255, 255, 0.10); color: #fff; }
-        .body { padding: 12px; }
+        .close:hover { background: rgba(255, 91, 166, 0.14); color: #f73596; }
+        .body {
+          position: relative;
+          padding: 12px;
+        }
         .status {
           display: flex;
           align-items: center;
           gap: 8px;
-          color: #b9c3d6;
+          color: #6f5570;
           min-height: 20px;
           margin-bottom: 10px;
         }
@@ -177,79 +254,131 @@
           width: 8px;
           height: 8px;
           border-radius: 999px;
-          background: #8b98aa;
+          background: #c69ab9;
         }
-        .dot.active { background: #37d67a; box-shadow: 0 0 0 4px rgba(55, 214, 122, 0.14); }
-        .dot.busy { background: #f7b955; box-shadow: 0 0 0 4px rgba(247, 185, 85, 0.14); }
+        .dot.active { background: #84dfff; box-shadow: 0 0 0 4px rgba(132, 223, 255, 0.25), 0 0 14px rgba(132, 223, 255, 0.74); }
+        .dot.busy { background: #ff5bac; box-shadow: 0 0 0 4px rgba(255, 91, 172, 0.20), 0 0 14px rgba(255, 91, 172, 0.62); }
         .track {
+          position: relative;
           padding: 10px;
           border-radius: 8px;
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 247, 252, 0.50)),
+            rgba(255, 255, 255, 0.56);
+          border: 1px solid rgba(255, 113, 178, 0.22);
           margin-bottom: 10px;
+          overflow: hidden;
+        }
+        .track::before {
+          content: "";
+          position: absolute;
+          left: 10px;
+          right: 10px;
+          bottom: 0;
+          height: 2px;
+          border-radius: 999px;
+          background: linear-gradient(90deg, #ff4fa0, #ff9ccd, #93ddff);
+          box-shadow: 0 0 14px rgba(255, 83, 166, 0.42);
         }
         .artist {
-          color: #fff;
+          position: relative;
+          color: #e72888;
           font-size: 16px;
           font-weight: 700;
           overflow-wrap: anywhere;
+          text-shadow: 0 0 12px rgba(255, 100, 180, 0.18);
         }
         .song {
-          color: #dbe4f3;
+          position: relative;
+          color: #4d3d53;
           margin-top: 2px;
           overflow-wrap: anywhere;
         }
         .link {
+          position: relative;
           display: block;
-          color: #8ec8ff;
+          color: #148fbd;
           text-decoration: none;
           overflow-wrap: anywhere;
           margin-top: 8px;
         }
         .link:hover { text-decoration: underline; }
         .raw {
-          color: #9facbf;
+          color: #4d3d53;
           max-height: 74px;
           overflow: auto;
           white-space: pre-wrap;
           overflow-wrap: anywhere;
           padding: 8px;
           border-radius: 6px;
-          background: rgba(0, 0, 0, 0.25);
+          background: rgba(255, 255, 255, 0.52);
+          border: 1px solid rgba(255, 113, 178, 0.16);
           margin-bottom: 10px;
         }
         .actions { display: flex; gap: 8px; }
         button.action {
           flex: 1;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 7px;
           appearance: none;
-          border: 1px solid rgba(255, 255, 255, 0.16);
+          border: 1px solid rgba(255, 255, 255, 0.68);
           border-radius: 6px;
-          color: #fff;
-          background: #2f6df6;
+          color: #ffffff;
+          background: linear-gradient(135deg, #ff4fa0, #ff77bb 52%, #ffb6dc);
           cursor: pointer;
           font: 700 12px/1 Arial, Helvetica, sans-serif;
           padding: 9px 10px;
         }
-        button.secondary { background: rgba(255, 255, 255, 0.08); }
+        button.action::before {
+          content: "";
+          flex: 0 0 auto;
+          width: 14px;
+          height: 14px;
+          background: currentColor;
+          mask: center / contain no-repeat;
+        }
+        button[data-action="scan"]::before {
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 2l1.7 5.3L19 9l-5.3 1.7L12 16l-1.7-5.3L5 9l5.3-1.7L12 2zm6 10l.9 2.8 2.8.9-2.8.9L18 20l-.9-2.4-2.8-.9 2.8-.9L18 12zM5 14l.8 2.3L8 17l-2.2.7L5 20l-.8-2.3L2 17l2.2-.7L5 14z'/%3E%3C/svg%3E");
+        }
+        button[data-action="toggle"]::before {
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M8 5v14l11-7L8 5z'/%3E%3C/svg%3E");
+        }
+        button[data-action="toggle"][data-active="true"]::before {
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M7 7h10v10H7z'/%3E%3C/svg%3E");
+        }
+        button.secondary {
+          color: #24455a;
+          background:
+            linear-gradient(135deg, rgba(151, 225, 255, 0.78), rgba(255, 255, 255, 0.58)),
+            rgba(255, 255, 255, 0.62);
+        }
         button.action:disabled {
           cursor: not-allowed;
           opacity: 0.55;
         }
         .small {
-          color: #8190a5;
+          color: #755a73;
           font-size: 11px;
           margin-top: 10px;
         }
       </style>
       <div class="card">
         <div class="head">
-          <div class="title">One World Radio Now Playing</div>
+          <div class="title-wrap">
+            <span class="mini-mark" aria-hidden="true"><span></span></span>
+            <div>
+              <div class="eyebrow">PartyCue</div>
+              <div class="title">Now Playing</div>
+            </div>
+          </div>
           <button class="close" title="隐藏">×</button>
         </div>
         <div class="body">
-          <div class="status"><span class="dot"></span><span data-role="status">待命</span></div>
+          <div class="status"><span class="dot"></span><span data-role="status">准备开场</span></div>
           <div class="track" data-role="track">
-            <div class="artist">还没有识别结果</div>
+            <div class="artist">舞台灯光待命</div>
             <div class="song">打开目标视频后点“识别一次”。</div>
           </div>
           <div class="raw" data-role="raw">OCR 原文会显示在这里。</div>
@@ -280,7 +409,7 @@
 
   async function startListening() {
     state.active = true;
-    setStatus("监听中");
+    setStatus("舞台监听中");
     updatePanel();
 
     if (!intervalId) {
@@ -299,7 +428,7 @@
       window.clearInterval(intervalId);
       intervalId = 0;
     }
-    setStatus("已停止监听");
+    setStatus("监听已暂停");
     updatePanel();
   }
 
@@ -316,7 +445,7 @@
     state.busy = true;
     state.lastError = "";
     state.warning = "";
-    setStatus("正在截图和 OCR");
+    setStatus("正在扫舞台字幕");
     updatePanel();
 
     try {
@@ -359,7 +488,7 @@
 
       state.track = best.track;
       state.query = `${best.track.artist} ${best.track.title}`.replace(/\s+/g, " ").trim();
-      setStatus("正在匹配网易云链接");
+      setStatus("正在点亮网易云链接");
       updatePanel();
 
       const resolved = await sendRuntimeMessage({ type: "RESOLVE_NETEASE_URL", query: state.query, track: state.track });
@@ -372,7 +501,7 @@
       state.searchUrl = resolved.searchUrl || "";
       state.warning = resolved.warning || "";
       state.lastScanAt = new Date().toLocaleTimeString();
-      setStatus(state.active ? "监听中" : "识别完成");
+      setStatus(state.active ? "舞台监听中" : "歌名已点亮");
       await persistState();
       return { ...state };
     } catch (error) {
@@ -799,6 +928,7 @@
     scanButton.disabled = state.busy || !state.enabled;
     toggleButton.disabled = state.busy || !state.enabled;
     toggleButton.textContent = state.active ? "停止监听" : "开始监听";
+    toggleButton.dataset.active = state.active ? "true" : "false";
 
     if (state.track) {
       const linkHtml = state.link

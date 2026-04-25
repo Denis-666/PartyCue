@@ -3,24 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>One World Radio Now Playing</title>
+    <title>PartyCue</title>
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
     <main class="popup">
-      <header>
+      <header class="hero">
+        <div class="brand-mark" aria-hidden="true">
+          <span class="brand-face"></span>
+          <span class="brand-spark"></span>
+        </div>
         <div>
+          <div class="eyebrow">PartyCue</div>
           <h1>Now Playing</h1>
           <p id="page-status">正在连接当前标签页...</p>
         </div>
       </header>
 
       <section class="result" id="result">
-        <div class="empty">暂无识别结果</div>
+        <div class="empty"><span class="empty-orbit" aria-hidden="true"></span>暂无识别结果</div>
       </section>
 
       <section class="raw">
-        <div class="label">OCR 原文</div>
+        <div class="label"><span aria-hidden="true"></span>OCR 原文</div>
         <pre id="raw-text">等待截图。</pre>
       </section>
 

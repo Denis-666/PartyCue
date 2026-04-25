@@ -114,9 +114,10 @@ function isTargetTab(tab) {
 
 function renderState(state) {
   currentState = state;
+  els.result.classList.toggle("has-track", Boolean(state?.track));
 
   if (!state?.track) {
-    els.result.innerHTML = '<div class="empty">暂无识别结果</div>';
+    els.result.innerHTML = '<div class="empty"><span class="empty-orbit" aria-hidden="true"></span>暂无识别结果</div>';
     els.rawText.textContent = state?.rawText || "等待截图。";
   } else {
     const link = state.link
@@ -137,6 +138,7 @@ function renderState(state) {
   }
 
   els.listen.textContent = state?.active ? "停止监听" : "开始监听";
+  els.listen.dataset.active = state?.active ? "true" : "false";
 }
 
 function setBusy(busy) {

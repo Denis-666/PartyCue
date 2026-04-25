@@ -1,11 +1,23 @@
 {
   "manifest_version": 3,
-  "name": "One World Radio Now Playing",
-  "description": "OCR the now-playing label on the target YouTube radio stream and resolve a NetEase Cloud Music URL.",
+  "name": "PartyCue",
+  "description": "A cheerful OCR party helper that catches the now-playing label from a target YouTube radio stream and opens NetEase Cloud Music.",
   "version": "1.0.0",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
     "default_popup": "popup.html",
-    "default_title": "识别当前歌曲"
+    "default_title": "PartyCue: 捕捉当前歌曲"
   },
   "background": {
     "service_worker": "background.js"
