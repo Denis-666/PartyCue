@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  margin: 0;
+  color: #172033;
+  background: #f5f7fb;
+  font: 13px/1.45 Arial, Helvetica, sans-serif;
+}
+
+.popup {
+  padding: 14px;
+}
+
+header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  margin: 0 0 3px;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+p {
+  margin: 0;
+  color: #647086;
+}
+
+.result,
+.raw {
+  border: 1px solid #dbe2ef;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.result {
+  padding: 12px;
+  min-height: 82px;
+}
+
+.empty {
+  color: #8792a5;
+}
+
+.artist {
+  color: #172033;
+  font-size: 17px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.song {
+  color: #445168;
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+
+a {
+  display: block;
+  margin-top: 8px;
+  color: #0b63ce;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.raw {
+  overflow: hidden;
+}
+
+.label {
+  padding: 8px 10px;
+  color: #647086;
+  border-bottom: 1px solid #edf1f7;
+  background: #fbfcff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+pre {
+  min-height: 58px;
+  max-height: 112px;
+  margin: 0;
+  padding: 10px;
+  color: #445168;
+  white-space: pre-wrap;
+  overflow: auto;
+  font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  flex: 1;
+  appearance: none;
+  border: 1px solid #245bd8;
+  border-radius: 7px;
+  color: #fff;
+  background: #2f6df6;
+  cursor: pointer;
+  font: 700 13px/1 Arial, Helvetica, sans-serif;
+  padding: 10px 12px;
+}
+
+button.secondary {
+  color: #273246;
+  background: #fff;
+  border-color: #cfd8e8;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+footer {
+  color: #8792a5;
+  font-size: 12px;
+  margin-top: 10px;
+}

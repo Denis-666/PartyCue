@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>One World Radio Now Playing</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header>
+        <div>
+          <h1>Now Playing</h1>
+          <p id="page-status">正在连接当前标签页...</p>
+        </div>
+      </header>
+
+      <section class="result" id="result">
+        <div class="empty">暂无识别结果</div>
+      </section>
+
+      <section class="raw">
+        <div class="label">OCR 原文</div>
+        <pre id="raw-text">等待截图。</pre>
+      </section>
+
+      <div class="actions">
+        <button id="scan" type="button">识别一次</button>
+        <button id="listen" type="button" class="secondary">开始监听</button>
+      </div>
+
+      <footer id="hint">只支持指定的 YouTube 直播页面。</footer>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

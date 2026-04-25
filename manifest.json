@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "One World Radio Now Playing",
+  "description": "OCR the now-playing label on the target YouTube radio stream and resolve a NetEase Cloud Music URL.",
+  "version": "1.0.0",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "识别当前歌曲"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "activeTab",
+    "offscreen",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://music.163.com/*",
+    "https://www.youtube.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "vendor/*",
+        "vendor/lang/*"
+      ],
+      "matches": [
+        "https://www.youtube.com/*"
+      ]
+    }
+  ]
+}
