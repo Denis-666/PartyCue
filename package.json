@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A cheerful Chrome extension that OCRs the now-playing label on a target YouTube radio stream and opens NetEase Cloud Music.",
   "scripts": {
-    "check": "node --check background.js && node --check popup.js && node --check content.js && node --check offscreen.js"
+    "check": "node --check src/background.js && node --check src/popup.js && node --check src/content.js && node --check src/offscreen.js"
   },
   "keywords": [
     "chrome-extension",
